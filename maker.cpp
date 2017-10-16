@@ -152,8 +152,8 @@ void jsonme(string namey){
 	Json::Value edges;
 	fr(i,0,z/2){
 		Json::Value edge;
-		edge.append(to[i]);
-		edge.append(from[i]);
+		edge.append(to[i<<1]);
+		edge.append(from[i<<1]);
 		edges.append(edge);
 	}
 	graph["edges"]=edges;
@@ -178,7 +178,7 @@ int main(){
 	string namey;
 	string cmdd;
 	srand(time(NULL));
-	fr(i,15,201){
+	fr(i,7,201){
 		fr(j,1,6){
 			int m;
 			n=i;
