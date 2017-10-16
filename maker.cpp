@@ -1,8 +1,12 @@
 #include<bits/stdc++.h>
 #include "json/json.h"
 #include "jsoncpp.cpp"
-#define fr(a,b,c) for(int a=b;a<c;a++)
 using namespace std;
+
+#define fr(a, b, c) for(int a = b, __ = c; a < __; a++)
+
+typedef pair<int, int> ii;
+
 int adj[1000],deg[1000],ant[100000],n,to[100000],from[100000],mkd[1000],col[1000],z;
 void add(int a,int b){
 	ant[z]=adj[a];
@@ -17,6 +21,34 @@ void add(int a,int b){
 	adj[a]=z;
 	z++;
 }
+
+void generate(int n, int m) {
+	if (m < n - 1) return;
+	if (2 * m > n * (n - 1)) return;
+
+	set<ii> s;
+	fr (v, 1, n) {
+		int u = rand() % v;
+		add(u, v);
+		s.insert({u, v});
+	}
+
+	vector<ii> edges;
+	fr (u, 0, n) {
+		fr (v, u + 1, n) {
+			if (s.count({u, v})) continue;
+			edges.push_back({u, v});
+		}
+	}
+
+	fr(i, 0, m - (n - 1)) {
+		int idx = rand() % edges.size();
+		swap(edges[idx], edges[edges.size() - 1]);
+		add(edges.back().first, edges.back().second);
+		edges.pop_back();
+	}
+}
+
 int best;
 bool check(){
 	fr(i,0,z)if(!mkd[to[i]]&&!mkd[from[i]])return 0;
@@ -121,7 +153,7 @@ void jsonme(){
 		edges.append(edge);
 	}
 	graph["edges"]=edges;
-	entry["graph"];
+	entry["graph"]=graph;
 	
 	graphs.append(entry);
 	json["graphs"] = graphs;
@@ -136,5 +168,8 @@ void solve(){
 	go(0,0);
 }
 int main(){
+	srand(time(NULL));
+	n=200;
+	generate(200,10000);
 	jsonme();
 }
