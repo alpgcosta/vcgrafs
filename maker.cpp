@@ -25,6 +25,9 @@ void add(int a,int b){
 void generate(int n, int m) {
 	if (m < n - 1) return;
 	if (2 * m > n * (n - 1)) return;
+	
+	z=0;
+	memset(adj,-1,sizeof adj);
 
 	set<ii> s;
 	fr (v, 1, n) {
@@ -162,14 +165,51 @@ void jsonme(){
 void solve(){
 	best=1e9;
 	v2aprox=m2aprox();
-	v2greedy=m2greedy();
+	cerr<<"2aprox"<<endl;
 	vgreedy=mgreedy();
+	cerr<<"greedy"<<endl;
+	v2greedy=m2greedy();
+	cerr<<"2greedy"<<endl;
 	memset(mkd,0,sizeof mkd);
 	go(0,0);
 }
 int main(){
-	srand(time(NULL));
-	n=200;
-	generate(200,10000);
-	jsonme();
+	string namey;
+	fr(i,7,201){
+		namey="json"+i+"-1.json";
+		freopen(namey,"w",stdout);
+		srand(time(NULL));
+		generate(n,n-1);
+		solve();
+		jsonme();
+		system("curl -X POST -d @"+namey+" -H \"Content-Type: application/json\" 162.243.157.230:5000/graph");
+		namey="json"+i+"-2.json";
+		freopen(namey,"w",stdout);
+		srand(time(NULL));
+		generate(n,n*2);
+		solve();
+		jsonme();
+		system("curl -X POST -d @"+namey+" -H \"Content-Type: application/json\" 162.243.157.230:5000/graph");
+		namey="json"+i+"-3.json";
+		freopen(namey,"w",stdout);
+		srand(time(NULL));
+		generate(n,n*3);
+		solve();
+		jsonme();
+		system("curl -X POST -d @"+namey+" -H \"Content-Type: application/json\" 162.243.157.230:5000/graph");
+		namey="json"+i+"-4.json";
+		freopen(namey,"w",stdout);
+		srand(time(NULL));
+		generate(n,n*n/5);
+		solve();
+		jsonme();
+		system("curl -X POST -d @"+namey+" -H \"Content-Type: application/json\" 162.243.157.230:5000/graph");
+		namey="json"+i+"-5.json";
+		freopen(namey,"w",stdout);
+		srand(time(NULL));
+		generate(n,n*n/4);
+		solve();
+		jsonme();
+		system("curl -X POST -d @"+namey+" -H \"Content-Type: application/json\" 162.243.157.230:5000/graph");
+	}
 }
