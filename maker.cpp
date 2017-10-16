@@ -175,41 +175,57 @@ void solve(){
 }
 int main(){
 	string namey;
-	fr(i,7,201){
-		namey="json"+i+"-1.json";
-		freopen(namey,"w",stdout);
+	string cmdd;
+	fr(i,15,201){
+		namey="json"+to_string(i)+"-1.json";
+		freopen(namey.c_str(),"w",stdout);
 		srand(time(NULL));
 		generate(n,n-1);
 		solve();
 		jsonme();
-		system("curl -X POST -d @"+namey+" -H \"Content-Type: application/json\" 162.243.157.230:5000/graph");
-		namey="json"+i+"-2.json";
-		freopen(namey,"w",stdout);
+		cout<<endl;
+		freopen("close","w",stdout);
+		cmdd="curl -X POST -d @"+namey+" -H \"Content-Type: application/json\" 162.243.157.230:5000/graph";
+		system(cmdd.c_str());
+		namey="json"+to_string(i)+"-2.json";
+		freopen(namey.c_str(),"w",stdout);
 		srand(time(NULL));
 		generate(n,n*2);
 		solve();
 		jsonme();
-		system("curl -X POST -d @"+namey+" -H \"Content-Type: application/json\" 162.243.157.230:5000/graph");
-		namey="json"+i+"-3.json";
-		freopen(namey,"w",stdout);
+		cout<<endl;
+		freopen("close","w",stdout);
+		cmdd="curl -X POST -d @"+namey+" -H \"Content-Type: application/json\" 162.243.157.230:5000/graph";
+		system(cmdd.c_str());
+		namey="json"+to_string(i)+"-3.json";
+		freopen(namey.c_str(),"w",stdout);
 		srand(time(NULL));
 		generate(n,n*3);
 		solve();
 		jsonme();
-		system("curl -X POST -d @"+namey+" -H \"Content-Type: application/json\" 162.243.157.230:5000/graph");
-		namey="json"+i+"-4.json";
-		freopen(namey,"w",stdout);
+		cout<<endl;
+		freopen("close","w",stdout);
+		cmdd="curl -X POST -d @"+namey+" -H \"Content-Type: application/json\" 162.243.157.230:5000/graph";
+		system(cmdd.c_str());
+		namey="json"+to_string(i)+"-4.json";
+		freopen(namey.c_str(),"w",stdout);
 		srand(time(NULL));
 		generate(n,n*n/5);
 		solve();
 		jsonme();
-		system("curl -X POST -d @"+namey+" -H \"Content-Type: application/json\" 162.243.157.230:5000/graph");
-		namey="json"+i+"-5.json";
-		freopen(namey,"w",stdout);
+		cout<<endl;
+		freopen("close","w",stdout);
+		cmdd="curl -X POST -d @"+namey+" -H \"Content-Type: application/json\" 162.243.157.230:5000/graph";
+		system(cmdd.c_str());
+		namey="json"+to_string(i)+"-5.json";
+		freopen(namey.c_str(),"w",stdout);
 		srand(time(NULL));
 		generate(n,n*n/4);
 		solve();
 		jsonme();
-		system("curl -X POST -d @"+namey+" -H \"Content-Type: application/json\" 162.243.157.230:5000/graph");
+		cout<<endl;
+		freopen("close","w",stdout);
+		cmdd="curl -X POST -d @"+namey+" -H \"Content-Type: application/json\" 162.243.157.230:5000/graph";
+		system(cmdd.c_str());
 	}
 }
