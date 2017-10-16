@@ -1,4 +1,7 @@
 #include<bits/stdc++.h>
+#include "json/json.h"
+#include "jsoncpp.cpp"
+#define fr(a,b,c) for(int a=b;a<c;a++)
 using namespace std;
 int adj[1000],deg[1000],ant[100000],n,to[100000],from[100000],mkd[1000],col[1000],z;
 void add(int a,int b){
@@ -63,7 +66,7 @@ int mgreedy(){
 		if(bd){
 			mkd[bi]=1;
 			ans++;
-			for(int ad=adj[i];~ad;ad=ant[ad])deg[to[ad]]--;
+			for(int ad=adj[bi];~ad;ad=ant[ad])deg[to[ad]]--;
 		}else break;
 	}
 	best=min(best,ans);
@@ -97,13 +100,41 @@ int m2greedy(){
 	}
 	best=min(best,ans);
 }
+int v2aprox,vgreedy,v2greedy;
+void jsonme(){
+	Json::Value json;
+	Json::Value graphs;
+	Json::Value entry;
+	entry["nodes"]=n;
+	entry["edges"]=z/2;
+	entry["none"]=best;
+	entry["2aprox"]=v2aprox;
+	entry["greedy"]=vgreedy;
+	entry["2greedy"]=v2greedy;
+	Json::Value graph;
+	graph["n"]=n;
+	Json::Value edges;
+	fr(i,0,z/2){
+		Json::Value edge;
+		edge.append(to[i]);
+		edge.append(from[i]);
+		edges.append(edge);
+	}
+	graph["edges"]=edges;
+	entry["graph"];
+	
+	graphs.append(entry);
+	json["graphs"] = graphs;
+	cout<<json;
+}
 void solve(){
 	best=1e9;
-	int v2aprox=m2aprox();
-	int v2greedy=m2greedy();
-	int vgreedy=mgreedy();
+	v2aprox=m2aprox();
+	v2greedy=m2greedy();
+	vgreedy=mgreedy();
 	memset(mkd,0,sizeof mkd);
 	go(0,0);
 }
 int main(){
+	jsonme();
 }
