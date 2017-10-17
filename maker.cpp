@@ -218,7 +218,7 @@ int main(){
 		cerr<<i<<endl;
 		fr(j,1,6){
 			cerr<<" - "<<j<<endl;
-			fr(k, 0, 100) {
+			fr(k, 0, 1) {
 				int m;
 				n=i;
 				if(j==1)m=n-1;
