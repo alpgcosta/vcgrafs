@@ -73,7 +73,7 @@ void go(int v,int cst){
 	if(has_free_edge)go(v+1,cst+1);
 	mkd[v]=0;
 }
-int ord[1000];
+/*int ord[1000];
 int bak[1000];
 int best2;
 void go2(int id,int cst){
@@ -92,7 +92,7 @@ void go2(int id,int cst){
 	mkd[v]=1;
 	if(has_free_edge)go2(id+1,cst+1);
 	mkd[v]=0;
-}
+}*/
 int m2aprox(){
 	memset(mkd,0,sizeof mkd);
 	int ans=0;
@@ -188,10 +188,10 @@ void jsonme(string namey){
 	json["graphs"] = graphs;
 	file<<json;
 }
-
+/*
 bool compDeg(int u, int v) {
   return deg[u] < deg[v];
-}
+}*/
 
 void solve(){
 	best=1e9;
@@ -204,22 +204,22 @@ void solve(){
 	best2 = best;
 	// memset(mkd,0,sizeof mkd);
 	// go(0, 0);
-	sort(ord, ord + n, compDeg);
+	//sort(ord, ord + n, compDeg);
 	fr(i, 0, n) {
 		bak[ord[i]] = i;
 	}
 	memset(mkd,0,sizeof mkd);
-	go2(0, 0);
-	best = best2;
+	go(0, 0);
 }
 int main(){
-	fr(i, 0, 1000) ord[i] = i;
 	string namey;
 	string cmdd;
 	srand(time(NULL));
-	fr(i,7,201){
+	fr(i,7,30){
+		cerr<<i<<endl;
 		fr(j,1,6){
-			fr(k, 0, 100) {
+			cerr<<" - "<<j<<endl;
+			fr(k, 0, 1) {
 				int m;
 				n=i;
 				if(j==1)m=n-1;
