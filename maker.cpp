@@ -201,13 +201,12 @@ void solve(){
 	// cerr<<"greedy"<<endl;
 	v2greedy=m2greedy();
 	// cerr<<"2greedy"<<endl;
-	best2 = best;
 	// memset(mkd,0,sizeof mkd);
 	// go(0, 0);
 	//sort(ord, ord + n, compDeg);
-	fr(i, 0, n) {
+/*	fr(i, 0, n) {
 		bak[ord[i]] = i;
-	}
+	}*/
 	memset(mkd,0,sizeof mkd);
 	go(0, 0);
 }
