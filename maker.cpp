@@ -62,10 +62,13 @@ void go(int v,int cst){
 	if(v==n)return;
 	if(cst>=best)return;
 	int has_free_edge=0;
+	int has_free_bef=0;
 	for(int i=adj[v];~i;i=ant[i]){
-		if(!mkd[to[i]]&&!mkd[from[i]])has_free_edge=1;
+		if(!mkd[to[i]]&&!mkd[from[i]])has_free_edge++;
+		if(to[i]<v&&!mkd[to[i]])has_free_bef=1;
 	}
-	go(v+1,cst);
+	if(!has_free_bef&&cst+has_free_edge<best)
+		go(v+1,cst);
 	mkd[v]=1;
 	if(has_free_edge)go(v+1,cst+1);
 	mkd[v]=0;
@@ -178,7 +181,7 @@ int main(){
 	string namey;
 	string cmdd;
 	srand(time(NULL));
-	fr(i,7,201){
+	fr(i,30,201){
 		fr(j,1,6){
 			int m;
 			n=i;
