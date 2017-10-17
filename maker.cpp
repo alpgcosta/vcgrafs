@@ -108,6 +108,7 @@ int mgreedy(){
 		}else break;
 	}
 	best=min(best,ans);
+	return ans;
 }
 int m2greedy(){
 	int ans=0,bd=0,bi;
@@ -137,6 +138,7 @@ int m2greedy(){
 		}else break;
 	}
 	best=min(best,ans);
+	return ans;
 }
 int v2aprox,vgreedy,v2greedy;
 void jsonme(string namey){
@@ -181,7 +183,7 @@ int main(){
 	string namey;
 	string cmdd;
 	srand(time(NULL));
-	fr(i,30,201){
+	fr(i,5,201){
 		fr(j,1,6){
 			int m;
 			n=i;
