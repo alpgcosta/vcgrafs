@@ -219,19 +219,21 @@ int main(){
 	srand(time(NULL));
 	fr(i,7,201){
 		fr(j,1,6){
-			int m;
-			n=i;
-			if(j==1)m=n-1;
-			if(j==2)m=n*2;
-			if(j==3)m=n*3;
-			if(j==4)m=n*n/5;
-			if(j==5)m=n*n/4;
-			namey="json"+to_string(i)+"-"+to_string(j)+".json";
-			generate(n,m);
-			solve();
-			jsonme(namey);
-			cmdd="curl -X POST -d @"+namey+" -H \"Content-Type: application/json\" 162.243.157.230:5000/graph";
-			system(cmdd.c_str());
+			fr(k, 0, 100) {
+				int m;
+				n=i;
+				if(j==1)m=n-1;
+				if(j==2)m=n*2;
+				if(j==3)m=n*3;
+				if(j==4)m=n*n/5;
+				if(j==5)m=n*n/4;
+				namey="json"+to_string(i)+"-"+to_string(j)+"-"+to_string(k)+".json";
+				generate(n,m);
+				solve();
+				jsonme(namey);
+				cmdd="curl -X POST -d @"+namey+" -H \"Content-Type: application/json\" 162.243.157.230:5000/graph";
+				system(cmdd.c_str());
+			}
 		}
 	}
 }
